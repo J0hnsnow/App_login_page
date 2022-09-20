@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nduthi/Signup_page.dart';
 import 'login_page.dart';
+import 'Signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // ignore: prefer_const_constructors
-      home: LoginPage(),
+      home: SignupPage(),
     );
   }
 }
