@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "35887283001",
+    "firebase_url": "https://nduthi-4474-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "nduthi-4474",
+    "storage_bucket": "nduthi-4474.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35887283001:android:8e7e9a83624ec19fd286e8",
+        "android_client_info": {
+          "package_name": "com.example.flutter_nduthi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35887283001-07rbrposs3ujjrk0s90vkosgb3nj0tfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAliGU5C5Q4hjswu-On6rzWwMovvhzIRhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35887283001-07rbrposs3ujjrk0s90vkosgb3nj0tfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
