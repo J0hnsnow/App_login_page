@@ -16,12 +16,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Order A Nduthi',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Colors.white,
-        ),
-        home: MapScreen());
+      title: 'Order A Nduthi',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
+      home: MapScreen(),
+    );
   }
 }
 
@@ -39,8 +40,8 @@ class _MapScreenState extends State<MapScreen> {
   );
 
   late GoogleMapController _googleMapController;
-  late Marker _origin;
-  late Marker _destination;
+  Marker? _origin;
+  Marker? _destination;
 
   @override
   void dispose() {
@@ -50,50 +51,49 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var onPressed2 = (() => _googleMapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                  target: _origin.position,
-                  zoom: 3.5,
-                  tilt: 50.0,
-                ),
-              ),
-            ),
-            style: TextButton.styleFrom(
-              primary: Colors.green,
-              textstyle: const TextStyle(fintWeight: Fontweight.w600),
-            )
-          );
+    var onPressed2 = () {
+      _googleMapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: _origin!.position,
+            zoom: 3.5,
+            tilt: 50.0,
+          ),
+        ),
+      );
+    };
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
         title: const Text('Google Maps'),
         actions: [
-          // ignore: unnecessary_null_comparison
           if (_origin != null)
-          TextButton(
-            onPressed:onPressed2,
-        child: const Text('ORIGIN'),
-        ),
-
-         if(_destination != null)
-          TextButton(
-            onPressed:(() => _googleMapController.animateCamera (
-              CameraUpdate.newCameraPosition(
-                CameraPosition (
-                  target: _destination.position,
-                  zoom: 3.5,
-                  tilt: 50.0,
+            TextButton(
+              onPressed: onPressed2,
+              style: TextButton.styleFrom(
+                primary: Colors.green,
+                textStyle: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              child: const Text('animate camera'),
+            ),
+          if (_destination != null)
+            TextButton(
+              onPressed: () => _googleMapController.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: _destination!.position,
+                    zoom: 3.5,
+                    tilt: 50.0,
+                  ),
                 ),
               ),
+              style: TextButton.styleFrom(
+                primary: Colors.yellow,
+                textStyle: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              child: const Text('BIKE'),
             ),
-            style: TextButton.styleFrom(
-              primary: Colors.yellow,
-              textstyle: const TextStyle(fintWeight: Fontweight.w600),
-            ),
-          ),
-        child: const Text('BIKE'),
-          )
         ],
       ),
       body: GoogleMap(
@@ -102,8 +102,8 @@ class _MapScreenState extends State<MapScreen> {
         initialCameraPosition: _initialCameraPosition,
         onMapCreated: (controller) => _googleMapController = controller,
         markers: {
-          if (_origin != null) _origin,
-          if (_destination != null) _destination
+          if (_origin != null) _origin!,
+          if (_destination != null) _destination!,
         },
         onLongPress: _addMarker,
       ),
@@ -130,6 +130,7 @@ class _MapScreenState extends State<MapScreen> {
               BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
           position: pos,
         );
+        _destination = null;
       });
     } else {
       //Origin is already set
