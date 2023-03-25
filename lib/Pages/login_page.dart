@@ -13,21 +13,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // text controllers
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  //form key
+  final _formkey = GlobalKey<FormState>();
+
+  // text controller
+  final TextEditingController emailcontroller = TextEditingController();
+  final TextEditingController passwordcontroller = TextEditingController();
 
   Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
+      email: emailcontroller.text.trim(),
+      password: passwordcontroller.text.trim(),
     );
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailcontroller.dispose();
+    passwordcontroller.dispose();
     super.dispose();
   }
 
@@ -66,7 +69,6 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Container(
-                      controller: _passwordController,
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           border: Border.all(color: Colors.white),
@@ -88,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Container(
-                      controller: _passwordController,
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           border: Border.all(color: Colors.white),
@@ -145,7 +146,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: Widget.showSignupPage,
                         child: Text(
                           ' Register now',
                           style: TextStyle(
