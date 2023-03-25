@@ -1,8 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_nduthi/Pages/Signup_page.dart';
-import 'package:flutter_nduthi/Pages/auth_page.dart';
-import 'login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_nduthi/Pages/Main_page.dart';
 
@@ -16,7 +13,7 @@ class MainPage extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return MainPage();
+              return HomePage();
             } else {
               return MainPage();
             }
